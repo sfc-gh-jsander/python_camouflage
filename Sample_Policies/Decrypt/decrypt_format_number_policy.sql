@@ -1,3 +1,5 @@
+  
+  
   create or replace masking policy decrypt_format_ff3_integer as (val integer, keyid string)  returns integer ->
   case
     when  current_role() in ('FF3_DECRYPT')
@@ -13,7 +15,9 @@
     else -999
     end;
 
-    create or replace masking policy decrypt_format_ff3_decimal_38_8 as (val number(38,8), keyid string)  returns number(38,8) ->
+
+
+  create or replace masking policy decrypt_format_ff3_decimal_38_8 as (val number(38,8), keyid string)  returns number(38,8) ->
   case
     when  current_role() in ('FF3_DECRYPT')
      then decrypt_ff3_number($userkeys)
@@ -30,4 +34,5 @@
     else -999
   end;
 
-  --format_ff3_number_pass3(val)
+
+

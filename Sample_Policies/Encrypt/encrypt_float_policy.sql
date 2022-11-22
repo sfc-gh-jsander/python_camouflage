@@ -1,4 +1,5 @@
-  create or replace masking policy ff3_encrypt_float as (val float,keyid string)  returns float ->
+
+create or replace masking policy ff3_encrypt_float as (val float,keyid string)  returns float ->
   case
    when  current_role() in ('ACCOUNTADMIN') 
      then val
@@ -6,3 +7,5 @@
      then encrypt_ff3_float(keyid,val, $userkeys)
     else -999
   end;
+
+  

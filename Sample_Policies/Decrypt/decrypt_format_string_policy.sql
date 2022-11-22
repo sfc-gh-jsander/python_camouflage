@@ -1,3 +1,5 @@
+ 
+ 
  create or replace masking policy decrypt_format_ff3_string as (val string, keyid string)  returns string ->
   case
     
@@ -34,4 +36,6 @@
     else '** masked **'
   
   end;
+  
+
   

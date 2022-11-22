@@ -1,3 +1,5 @@
+
+
  create or replace masking policy decrypt_format_ff3_float as (val float, keyid string)  returns float ->
   case
     when  current_role() in ('FF3_DECRYPT')
@@ -12,3 +14,5 @@
      then val
     else -999
   end;
+
+  
