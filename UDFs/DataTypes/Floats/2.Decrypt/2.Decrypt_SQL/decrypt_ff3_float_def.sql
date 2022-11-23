@@ -5,6 +5,6 @@ returns float
 language python
 runtime_version = 3.8
 packages = ('pycryptodome')
-imports = ('@python_libs/ff3.zip','@python_libs/decrypt_ff3_float.py')
+imports = ('@python_libs/ff3.zip','@python_libs_ff3/decrypt_ff3_float.py')
 HANDLER = 'decrypt_ff3_float.udf';
 
