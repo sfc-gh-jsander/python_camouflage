@@ -4,7 +4,7 @@ returns number(38,8)
 language python
 runtime_version = 3.8
 packages = ('pycryptodome')
-imports = ('@python_libs/ff3.zip','@python_libs_ff3/encrypt_ff3_number.py')
+imports = ('@python_libs_ff3/ff3.zip','@python_libs_ff3/encrypt_ff3_number.py')
 HANDLER = 'encrypt_ff3_number.udf';
 
 
@@ -13,6 +13,6 @@ returns number(38,0)
 language python
 runtime_version = 3.8
 packages = ('pycryptodome')
-imports = ('@python_libs/ff3.zip','@python_libs_ff3/encrypt_ff3_number.py')
+imports = ('@python_libs_ff3/ff3.zip','@python_libs_ff3/encrypt_ff3_number.py')
 HANDLER = 'encrypt_ff3_number.udf';
 
