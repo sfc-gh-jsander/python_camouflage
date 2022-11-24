@@ -2,24 +2,6 @@
 
 use role sysadmin;
 
---- Create demo roles
-create or replace role ff3_encrypt;
-create or replace role ff3_decrypt;
-create or replace role data_sc;
-create or replace role masked;
-
---- Grant demo roles to your demo user
---- Replace KELLER with your demo user
-/*grant role ff3_encrypt to user KELLER;
-grant role ff3_decrypt to user KELLER;
-grant role data_sc to user KELLER;
-grant role masked to user KELLER;*/
-
-grant role ff3_encrypt to user KELLER;
-grant role ff3_decrypt to user KELLER;
-grant role data_sc to user KELLER;
-grant role masked to user KELLER;
-
 --- Create warehouse for demo  
 create or replace warehouse ff3_testing_wh_new warehouse_size=medium initially_suspended=true;
 
@@ -29,20 +11,65 @@ grant usage, operate on warehouse ff3_testing_wh_new to role ff3_decrypt;
 grant usage, operate on warehouse ff3_testing_wh_new to role data_sc;
 grant usage, operate on warehouse ff3_testing_wh_new to role masked;
 
+use warehouse ff3_testing_wh_new;
+
 --- Create demo database and schema for demo
 create or replace database ff3_testing_db_new;
-create schema ff3_testing_db.ff3_testing_schema_new;
+create schema ff3_testing_db_new.ff3_testing_schema_new;
+
+
+
+use role useradmin;
+
+--- Create demo roles
+create or replace role ff3_encrypt;
+create or replace role ff3_decrypt;
+create or replace role data_sc;
+create or replace role masked;
+
+use role securityadmin;
+create or replace role tag_admin comment = "Admin role manage tag";
+
+
+GRANT USAGE ON DATABASE ff3_testing_db_new TO ROLE tag_admin;
+GRANT USAGE ON SCHEMA ff3_testing_db_new.ff3_testing_schema_new TO ROLE tag_admin;
+
+grant create masking policy on schema ff3_testing_db_new.ff3_testing_schema_new to role tag_admin;
+grant create tag on schema ff3_testing_db_new.ff3_testing_schema_new to role tag_admin;
+
+use role accountadmin;
+grant apply tag on account to tag_admin;
+grant apply masking policy on account to role tag_admin;
+
+
+
+--- Grant demo roles to your demo user
+--- Replace KELLER with your demo user
+/*grant role ff3_encrypt to user KELLER;
+grant role ff3_decrypt to user KELLER;
+grant role data_sc to user KELLER;
+grant role masked to user KELLER;*/
+
+
+use role useradmin;
+
+GRANT ROLE tag_admin TO USER KELLER; 
+grant role ff3_encrypt to user KELLER;
+grant role ff3_decrypt to user KELLER;
+grant role data_sc to user KELLER;
+grant role masked to user KELLER;
+
+use role sysadmin;
 
 use database ff3_testing_db_new;
-use schema ff3_testing_db.ff3_testing_schema_new;
+use schema ff3_testing_db_new.ff3_testing_schema_new;
+use warehouse ff3_testing_wh_new;
 
 --- Create internal stage for the FF3 Python library
 create or replace stage python_libs_ff3;
 
-use database ff3_testing_db_new;
-use schema ff3_testing_schema_new;
-use warehouse ff3_testing_wh_new;
-use role sysadmin;
+
+
 
 put file://ff3.zip @python_libs_ff3 auto_compress=false;
 put file://*.py @python_libs_ff3 ;
@@ -63,7 +90,7 @@ create or replace tag fake_email;
 
 
 
-create or replace TABLE FF3_TESTING_DB.FF3_TESTING_SCHEMA.INSURANCE (
+create or replace TABLE FF3_TESTING_DB_NEW.FF3_TESTING_SCHEMA_NEW.INSURANCE (
 
     AGE NUMBER(38,0),
 
@@ -102,4 +129,3 @@ drop stage ff3_csv_load;
 drop file format csv_format_ff3_test;
 
 set userkeys='test';
-

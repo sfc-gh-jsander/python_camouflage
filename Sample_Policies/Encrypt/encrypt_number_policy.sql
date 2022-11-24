@@ -4,7 +4,7 @@ create or replace masking policy encrypt_number_ff3_integer as (val integer,keyi
    when  current_role() in ('SYSADMIN') 
      then val
     when  current_role() in ('FF3_ENCRYPT') 
-     then encrypt_ff3_number(keyid,val, $userkeys)
+     then encrypt_ff3_number_integer(keyid,val, $userkeys)
     else -999
   end;
 
@@ -15,7 +15,7 @@ create or replace masking policy encrypt_number_ff3_integer as (val integer,keyi
    when  current_role() in ('SYSADMIN') 
      then val
     when  current_role() in ('FF3_ENCRYPT') 
-     then encrypt_ff3_number(keyid,val, $userkeys)
+     then encrypt_ff3_number_decimal38_8(keyid,val, $userkeys)
     else -999
   end;
 

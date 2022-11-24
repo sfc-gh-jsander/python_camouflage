@@ -4,6 +4,7 @@ zip -r ff3.zip ff3/
 mv ff3.zip ../
 cd ..
 rm -rf python-fpe
+cp install.sql install.sql.bak
 echo Account url?
 read account
 echo User??
@@ -44,7 +45,10 @@ cat Sample_Policies/Encrypt/*.sql >> install.sql
 cat Sample_Policies/Decrypt/*.sql >> install.sql
 
 
-snowsql -a $account -u $user -f install.sql -o output_file=upload_result.csv -o quiet=true -o friendly=false -o header=false -o output_format=csv
+#snowsql -a $account -u $user -f install.sql -o output_file=upload_result.csv -o quiet=true -o friendly=false -o header=false -o output_format=csv
+
+snowsql -a $account -u $user -f install.sql   -o friendly=true
 
 rm *.py
 rm ff3.zip
+cp install.sql.bak install.sql

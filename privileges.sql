@@ -82,18 +82,17 @@ grant all privileges on function partial_decrypt_ff3_number_1d_integer(string, n
 
 grant all privileges on function format_ff3_number_integer(number) to role ff3_decrypt;
 grant all privileges on function sqljoin_ff3_number_integer(number) to role ff3_decrypt;
-
 grant all privileges on function format_ff3_number_integer(number) to role masked;
-grant all privileges on function format_ff3_number_partial_decimal38_8(number) to role masked;
 
-grant all privileges on function format_ff3_number_partial_decimal38_8(number) to role masked;
-grant all privileges on function format_ff3_number_partial_integer(number) to role masked;
 
-grant all privileges on function format_ff3_number_partial_decimal38_8(number) to role data_sc;
-grant all privileges on function format_ff3_number_partial_integer(number) to role data_sc;
+grant all privileges on function format_ff3_number_partial_decimal38_8(number(38,8),integer) to role masked;
+grant all privileges on function format_ff3_number_partial_integer(number(38,0),integer) to role masked;
 
-grant all privileges on function format_ff3_number_partial_decimal38_8(number) to role ff3_decrypt;
-grant all privileges on function format_ff3_number_partial_integer(number) to role ff3_decrypt;
+grant all privileges on function format_ff3_number_partial_decimal38_8(number(38,8),integer) to role data_sc;
+grant all privileges on function format_ff3_number_partial_integer(number(38,0),integer) to role data_sc;
+
+grant all privileges on function format_ff3_number_partial_decimal38_8(number(38,8),integer) to role ff3_decrypt;
+grant all privileges on function format_ff3_number_partial_integer(number(38,0),integer)to role ff3_decrypt;
 
 grant all privileges on function format_ff3_number_integer(number) to role data_sc;
 grant all privileges on function sqljoin_ff3_number_integer(number) to role data_sc;
