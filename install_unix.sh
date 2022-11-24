@@ -44,7 +44,7 @@ cat Sample_Policies/Encrypt/*.sql >> install.sql
 cat Sample_Policies/Decrypt/*.sql >> install.sql
 
 
-#snowsql -a $account -u $user -f install.sql -o output_file=upload_result.csv -o quiet=true -o friendly=false -o header=false -o output_format=csv
+snowsql -a $account -u $user -f install.sql -o output_file=upload_result.csv -o quiet=true -o friendly=false -o header=false -o output_format=csv
 
-#rm *.py
-#rm ff3.zip
+rm *.py
+rm ff3.zip
