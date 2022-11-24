@@ -1,3 +1,5 @@
+
+
 create or replace function FAKE(locale varchar,provider varchar,parameters variant)
 returns variant
 language python
@@ -15,3 +17,5 @@ def fake(locale,provider,parameters):
   fake = Faker(locale=locale)
   return json.loads(json.dumps(fake.format(formatter=provider,**parameters), default=str))
 $$;
+
+

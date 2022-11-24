@@ -10,7 +10,7 @@
      then sqljoin_ff3_float(val)
     when  current_role() in ('DATA_SC')
      then format_ff3_float(val)
-    when  current_role() in ('ACCOUNTADMIN') 
+    when  current_role() in ('SYSADMIN') 
      then val
     else -999
   end;

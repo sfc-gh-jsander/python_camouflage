@@ -10,7 +10,7 @@
      then sqljoin_ff3_number(val)
     when  current_role() in ('DATA_SC')
      then format_ff3_number(val)
-    when  current_role() in ('ACCOUNTADMIN') 
+    when  current_role() in ('SYSADMIN') 
      then val
     else -999
     end;
@@ -29,7 +29,7 @@
      then format_ff3_number(val)
     when  current_role() in ('DATA_SC')
      then format_ff3_number_partial(val, (select partial_decrypt_ff3_number_1d(keyid, val, $userkeys)::int))
-    when  current_role() in ('ACCOUNTADMIN') 
+    when  current_role() in ('SYSADMIN') 
      then val
     else -999
   end;
