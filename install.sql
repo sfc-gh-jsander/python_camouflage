@@ -18,8 +18,8 @@ GRANT ROLE ff3_standard TO USER KELLER;
 
 
 use role accountadmin;
-Drop warehouse ff3_testing_wh_new;
-Drop database ff3_testing_db_new;
+drop warehouse ff3_test_wh;
+drop database ff3_test_db;
 
 grant create warehouse on account to role ff3_standard;
 grant create database on account to role ff3_standard;
@@ -34,23 +34,23 @@ use role ff3_standard;
 
 --- Create warehouse for demo  
 
-create or replace warehouse ff3_testing_wh_new warehouse_size=medium initially_suspended=true;
+create or replace warehouse ff3_test_wh warehouse_size=medium initially_suspended=true;
 
 --- Grants on warehouse for demo
-grant usage, operate on warehouse ff3_testing_wh_new to role ff3_standard;
-grant usage, operate on warehouse ff3_testing_wh_new to role ff3_encrypt;
-grant usage, operate on warehouse ff3_testing_wh_new to role ff3_decrypt;
-grant usage, operate on warehouse ff3_testing_wh_new to role ff3_data_sc;
-grant usage, operate on warehouse ff3_testing_wh_new to role ff3_tag_admin;
-grant usage, operate on warehouse ff3_testing_wh_new to role ff3_masked;
+grant usage, operate on warehouse ff3_test_wh to role ff3_standard;
+grant usage, operate on warehouse ff3_test_wh to role ff3_encrypt;
+grant usage, operate on warehouse ff3_test_wh to role ff3_decrypt;
+grant usage, operate on warehouse ff3_test_wh to role ff3_data_sc;
+grant usage, operate on warehouse ff3_test_wh to role ff3_tag_admin;
+grant usage, operate on warehouse ff3_test_wh to role ff3_masked;
 
 
 
-use warehouse ff3_testing_wh_new;
+use warehouse ff3_test_wh;
 
 --- Create demo database and schema for demo
-create or replace database ff3_testing_db_new;
-create schema ff3_testing_db_new.ff3_testing_schema_new;
+create or replace database ff3_test_db;
+create schema ff3_test_db.ff3_test_schema;
 
 use role securityadmin;
 create or replace role ff3_tag_admin comment = "Admin role to manage tags created for the FF3 demo";
@@ -63,26 +63,26 @@ grant apply tag on account to role ff3_tag_admin;
 --grant apply tag on account to role ff3_standard;
 
 use role securityadmin;
-GRANT USAGE ON DATABASE ff3_testing_db_new TO ROLE ff3_tag_admin;
-GRANT USAGE ON SCHEMA ff3_testing_db_new.ff3_testing_schema_new TO ROLE ff3_tag_admin;
+GRANT USAGE ON DATABASE ff3_test_db TO ROLE ff3_tag_admin;
+GRANT USAGE ON SCHEMA ff3_test_db.ff3_test_schema TO ROLE ff3_tag_admin;
 
-grant create masking policy on schema ff3_testing_db_new.ff3_testing_schema_new to role ff3_tag_admin;
-grant create tag on schema ff3_testing_db_new.ff3_testing_schema_new to role ff3_tag_admin;
+grant create masking policy on schema ff3_test_db.ff3_test_schema to role ff3_tag_admin;
+grant create tag on schema ff3_test_db.ff3_test_schema to role ff3_tag_admin;
 
-grant create file format on schema ff3_testing_db_new.ff3_testing_schema_new to role ff3_standard;
-grant create masking policy on schema ff3_testing_db_new.ff3_testing_schema_new to role ff3_standard;
-grant create function on schema ff3_testing_db_new.ff3_testing_schema_new to role ff3_standard;
+grant create file format on schema ff3_test_db.ff3_test_schema to role ff3_standard;
+grant create masking policy on schema ff3_test_db.ff3_test_schema to role ff3_standard;
+grant create function on schema ff3_test_db.ff3_test_schema to role ff3_standard;
 
 
 use role accountadmin;
 
-grant create tag on schema ff3_testing_db_new.ff3_testing_schema_new to role ff3_tag_admin;
+grant create tag on schema ff3_test_db.ff3_test_schema to role ff3_tag_admin;
 
 use role ff3_standard;
 
-use database ff3_testing_db_new;
-use schema ff3_testing_db_new.ff3_testing_schema_new;
-use warehouse ff3_testing_wh_new;
+use database ff3_test_db;
+use schema ff3_test_db.ff3_test_schema;
+use warehouse ff3_test_wh;
 
 
 
@@ -95,13 +95,13 @@ create or replace stage python_libs_ff3;
 put file://ff3.zip @python_libs_ff3 auto_compress=false;
 put file://*.py @python_libs_ff3 ;
 
-grant usage, operate on warehouse ff3_testing_wh_new to role ff3_tag_admin;
+grant usage, operate on warehouse ff3_test_wh to role ff3_tag_admin;
 
 use role ff3_tag_admin;
 
-use database ff3_testing_db_new;
-use schema ff3_testing_db_new.ff3_testing_schema_new;
-use warehouse ff3_testing_wh_new;
+use database ff3_test_db;
+use schema ff3_test_db.ff3_test_schema;
+use warehouse ff3_test_wh;
 
 --- Create tags
 create or replace tag ff3_data_sc;
