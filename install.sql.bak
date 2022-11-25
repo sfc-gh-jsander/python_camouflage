@@ -60,7 +60,6 @@ use role accountadmin;
 grant apply tag on account to ff3_tag_admin;
 grant apply masking policy on account to role ff3_tag_admin;
 grant apply tag on account to role ff3_tag_admin;
---grant apply tag on account to role ff3_standard;
 
 use role securityadmin;
 GRANT USAGE ON DATABASE ff3_testing_db_new TO ROLE ff3_tag_admin;
