@@ -124,17 +124,17 @@ select * from insurance_target1  order by charges desc;
 
 select count(*) from insurance_target1 where smoker='yes' order by charges desc;
 
-select sum(charges::number(38,8)) from insurance_target1 where smoker='yes' ;
-select sum(charges::number(38,8)) from insurance_target1  ;
-select sum(charges::number(38,8)) from insurance_target1 WHERE age::number(38,8) >= 30 AND age::number(38,8) <= 40 and smoker='yes';
-select sum(charges::number(38,8)) from insurance_target1 WHERE age::number(38,8) >= 50 AND age::number(38,8) <= 60  ;
+select sum(charges) from insurance_target1 where smoker='yes' ;
+select sum(charges) from insurance_target1  ;
+select sum(charges) from insurance_target1 WHERE age >= 30 AND age <= 40 and smoker='yes';
+select sum(charges) from insurance_target1 WHERE age >= 50 AND age <= 60  ;
  
 
 use role ff3_data_sc;
 
 
 select * from insurance_target1  order by charges desc;
-select charges,age::number(38,8) from insurance_target1 where smoker='yes' ;
+select charges,age from insurance_target1 where smoker='yes' ;
 select count(*) from insurance_target1 where smoker='yes' order by charges desc;
 
 
@@ -148,21 +148,21 @@ alter table insurance_target1 modify column bmi unset tag fuzzy;
 
 use role ff3_data_sc;
 
-select sum(charges::number(38,8)) from insurance_target1 where smoker='yes' ;
-select sum(charges::number(38,8)) from insurance_target1 where smoker='no' ;
+select sum(charges) from insurance_target1 where smoker='yes' ;
+select sum(charges) from insurance_target1 where smoker='no' ;
 
 
 
-select sum(charges::number(38,8)) from insurance_target1 WHERE age::number(38,8) >= 30 AND age::number(38,8) <= 40 and smoker='yes';
+select sum(charges) from insurance_target1 WHERE age >= 30 AND age <= 40 and smoker='yes';
 
-select charges::number(38,8) from insurance_target1 WHERE age::number(38,8) >= 30 AND age::number(38,8) <= 40 and smoker='yes';
+select charges from insurance_target1 WHERE age >= 30 AND age <= 40 and smoker='yes';
 
-select sum(charges::number(38,8)) from insurance_target1 WHERE age::number(38,8)  >= 50 AND age::number(38,8) <= 60 and smoker='yes';
-select sum(charges::number(38,8)) from insurance_target1 WHERE age::number(38,8) >= 50::number(38,8) AND age::number(38,8) <= 60::number(38,8) and smoker='no';
+select sum(charges) from insurance_target1 WHERE age  >= 50 AND age <= 60 and smoker='yes';
+select sum(charges) from insurance_target1 WHERE age >= 50 AND age <= 60 and smoker='no';
 
-select sum(charges::number(38,8)) from insurance_target1 WHERE age::number(38,8) >= 50 AND age::number(38,8) <= 60 ;
+select sum(charges) from insurance_target1 WHERE age >= 50 AND age <= 60 ;
 
-select avg(charges::number(38,8)) from insurance_target1 ;
+select avg(charges) from insurance_target1 ;
     
 
 --to compare between partial decrypted (first digit) and fully decrypted numbers

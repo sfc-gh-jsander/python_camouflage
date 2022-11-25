@@ -52,3 +52,4 @@ snowsql -a $account -u $user -f install.sql   -o friendly=true
 rm *.py
 rm ff3.zip
 cp install.sql.bak install.sql
+rm install.sql.bak 
