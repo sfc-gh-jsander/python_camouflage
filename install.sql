@@ -2,11 +2,11 @@
 use role useradmin;
 
 --- Create demo roles
-create or replace role ff3_standard;
-create or replace role ff3_encrypt;
-create or replace role ff3_decrypt;
-create or replace role ff3_data_sc;
-create or replace role ff3_masked;
+create or replace role ff3_standard comment = "Object owner role for the FF3 demo";
+create or replace role ff3_encrypt comment = "Role to FF3 encrypt data for the FF3 demo" ;
+create or replace role ff3_decrypt comment = "Role to FF3 decrypt data for the FF3 demo" ;
+create or replace role ff3_data_sc comment = "Role to to work with encrypted data for the FF3 demo" ;
+create or replace role ff3_masked comment = "Role to showcase plain data masking on encrypted data for the FF3 demo" ;
 
 GRANT ROLE ff3_tag_admin TO USER KELLER; 
 grant role ff3_encrypt to user KELLER;
@@ -16,7 +16,7 @@ grant role ff3_masked to user KELLER;
 GRANT ROLE ff3_standard TO USER KELLER; 
 
 use role securityadmin;
-create or replace role ff3_tag_admin comment = "Admin role manage tag";
+create or replace role ff3_tag_admin comment = "Admin role to manage tags created for the FF3 demo";
 
 
 GRANT USAGE ON DATABASE ff3_testing_db_new TO ROLE ff3_tag_admin;
