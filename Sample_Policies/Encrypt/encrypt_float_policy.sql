@@ -1,5 +1,5 @@
 
-create or replace masking policy ff3_encrypt_float as (val float,keyid string)  returns float ->
+create or replace masking policy encrypt_float_ff3 as (val float,keyid string)  returns float ->
   case
    when  current_role() in ('FF3_STANDARD') 
      then val
