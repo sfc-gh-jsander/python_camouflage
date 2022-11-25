@@ -117,7 +117,7 @@ create or replace tag fake_email;
 
 use role ff3_standard;
 
-create or replace TABLE FF3_TESTING_DB_NEW.FF3_TESTING_SCHEMA_NEW.INSURANCE (
+create or replace TABLE FF3_TEST_DB.FF3_TEST_SCHEMA.INSURANCE_SOURCE1 (
 
     AGE NUMBER(38,0),
 
@@ -149,7 +149,7 @@ create or replace stage ff3_csv_load
 
 put file://insurance.csv @ff3_csv_load ;
 
-copy into insurance from @ff3_csv_load/insurance.csv
+copy into INSURANCE_SOURCE1 from @ff3_csv_load/insurance.csv
 file_format = (format_name = 'csv_format_ff3_test');
 
 drop stage ff3_csv_load;
