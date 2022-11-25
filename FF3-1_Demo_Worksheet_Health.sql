@@ -18,13 +18,14 @@ use warehouse ff3_testing_wh_new;
 
 alter tag ff3_encrypt set
   masking policy ENCRYPT_STRING_FF3,
-  masking policy ENCRYPT_NUMBER_FF3_DECIMAL_38_8,
-  masking policy FF3_ENCRYPT_FLOAT;
-
+  masking policy ENCRYPT_NUMBER_FF3_INTEGER,
+  masking policy ENCRYPT_FLOAT_FF3;
+  
+  
 alter tag ff3_data_sc set
   masking policy DECRYPT_FORMAT_FF3_FLOAT,
   masking policy DECRYPT_FORMAT_FF3_STRING,
-  masking policy DECRYPT_FORMAT_FF3_DECIMAL_38_8 ;
+  masking policy DECRYPT_FORMAT_FF3_INTEGER ;
 
 
 
@@ -32,8 +33,7 @@ set encryptkey='KEY678901';
 
 use role ff3_standard;
 
-create or replace view insurance_view1 as  select  $encryptkey as KEYID, * from insurance ;
-grant all privileges on tag ff3_encrypt to role ff3_standard;  
+create or replace view insurance_view1 as  select  $encryptkey as KEYID, * from insurance ;  
 
 select * from insurance_view1;
 
@@ -210,37 +210,3 @@ alter table insurance_target1 modify column age unset tag sqljoin;
 -- Further formatters are available that can make FF3-1 raw tokens look like US phone numbers or US postal codes
 -- In order to test this use the worksheet datayptes_test.sql and go through the steps there.
 -- Here also other datatypes such as floats and mixed numbers such as integers and decimals in the same table can be explored
-
-
-
-
-
- 
- 
- 
- 
- 
- alter table insurance_target1 modify column age set tag decrypt_this='';
-  alter table insurance_target1 modify column age unset tag decrypt_this;
-  alter table insurance_target1 modify column bmi set tag decrypt_this='';
-    alter table insurance_target1 modify column bmi unset tag decrypt_this;
- 
- set userkeys='''{
-    "678901": ["2DE79D232DF5585D68CE47882AE256D6", "CBD09280979564", "56854"],
-    "678902": ["c2051e1a93c3fd7f0e4f20b4fb4f7889aeb8d6fd10f68551af659323f42961e9", "CBD09280979841", "85567"]
-}''';
-
-
-
-
-
-
-create or replace external function get_oauth_url_code (client_id varchar, scope varchar, resource_url varchar, device_code_url varchar)
-    returns variant
-    api_integration = azure_api_1
-    as 'https://kellersapi.azure-api.net/kellers-sf-function-test/get_oauth_url';
-    
-    
-    select get_oauth_url_code('18e4c953-3423-4301-b050-562dbde643d2','https://kelleruserflow.snowflakeseclab42outlook.onmicrosoft.com/session:scope:POWERBIUSER','https://kelleruserflow.snowflakeseclab42outlook.onmicrosoft.com','https://login.microsoftonline.com/b3b06c45-b6f1-4d13-a720-8845b509b948/oauth2/devicecode');
-;
-  
