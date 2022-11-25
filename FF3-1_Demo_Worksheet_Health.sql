@@ -105,7 +105,7 @@ INSERT INTO insurance_source1_target1  select * from insurance_source1_view1;
 
 use role ff3_standard;
 
-create or replace view insurance_source1_target1_view1 as  select  $encryptkey as KEYID, * from insurance_source1_target1 ;  
+create or replace view insurance_source1_target1_view1 as  select * from insurance_source1_target1 ;  
  
 grant all privileges on table insurance_source1_target1_view1 to role ff3_encrypt;
 grant all privileges on table insurance_source1_target1_view1 to role ff3_masked;
