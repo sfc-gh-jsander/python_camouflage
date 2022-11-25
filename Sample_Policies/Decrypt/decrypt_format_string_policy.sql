@@ -9,28 +9,28 @@
     when  system$get_tag_on_current_column('decrypt_this')=''
      then decrypt_ff3_string(keyid, val,$userkeys)
      
-    when  current_role() in ('DATA_SC') AND system$get_tag_on_current_column('sqljoin')=''
+    when  current_role() in ('FF3_DATA_SC') AND system$get_tag_on_current_column('sqljoin')=''
      then sqljoin_ff3_string(val)  
     
-    when  current_role() in ('DATA_SC') AND system$get_tag_on_current_column('email')=''
+    when  current_role() in ('FF3_DATA_SC') AND system$get_tag_on_current_column('email')=''
      then format_email_ff3_string(val)
      
-    when  current_role() in ('DATA_SC') AND system$get_tag_on_current_column('uspostal')=''
+    when  current_role() in ('FF3_DATA_SC') AND system$get_tag_on_current_column('uspostal')=''
      then format_ff3_string_uspostal(val)
      
-    when  current_role() in ('DATA_SC') AND system$get_tag_on_current_column('usphone')=''
+    when  current_role() in ('FF3_DATA_SC') AND system$get_tag_on_current_column('usphone')=''
      then format_ff3_string_usphone(val)
      
-    when  current_role() in ('DATA_SC') AND system$get_tag_on_current_column('faker')=''
+    when  current_role() in ('FF3_DATA_SC') AND system$get_tag_on_current_column('faker')=''
      then FAKE('en_US','name',null)::varchar
      
-    when  current_role() in ('DATA_SC') AND system$get_tag_on_current_column('fake_email')=''
+    when  current_role() in ('FF3_DATA_SC') AND system$get_tag_on_current_column('fake_email')=''
      then FAKE('en_US','email',null)::varchar
      
-    when  current_role() in ('DATA_SC')
+    when  current_role() in ('FF3_DATA_SC')
      then format_ff3_string(val) 
     
-    when  current_role() in ('SYSADMIN') 
+     when  current_role() in ('FF3_STANDARD') 
      then val
     
     else '** masked **'
