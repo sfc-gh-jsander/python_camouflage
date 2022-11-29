@@ -9,11 +9,11 @@ create or replace role ff3_data_sc comment = "Role to to work with encrypted dat
 create or replace role ff3_masked comment = "Role to showcase plain data masking on encrypted data for the FF3 demo" ;
 
 
-grant role ff3_encrypt to user KELLER;
-grant role ff3_decrypt to user KELLER;
-grant role ff3_data_sc to user KELLER;
-grant role ff3_masked to user KELLER;
-GRANT ROLE ff3_standard TO USER KELLER; 
+grant role ff3_encrypt to user UsErNaMePlAcEhOlDeR;
+grant role ff3_decrypt to user UsErNaMePlAcEhOlDeR;
+grant role ff3_data_sc to user UsErNaMePlAcEhOlDeR;
+grant role ff3_masked to user UsErNaMePlAcEhOlDeR;
+grant role ff3_standard to user UsErNaMePlAcEhOlDeR; 
 
 
 
@@ -54,7 +54,7 @@ create schema ff3_test_db.ff3_test_schema;
 
 use role securityadmin;
 create or replace role ff3_tag_admin comment = "Admin role to manage tags created for the FF3 demo";
-GRANT ROLE ff3_tag_admin TO USER KELLER; 
+grant role ff3_tag_admin to user UsErNaMePlAcEhOlDeR; 
 
 use role accountadmin;
 grant apply tag on account to ff3_tag_admin;
