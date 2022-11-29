@@ -46,10 +46,18 @@ use role ff3_standard;
 --AES256 KEY, 56 bit Tweak, 6 digit padding
 --https://pages.nist.gov/ACVP/draft-celi-acvp-symmetric.html#name-test-groups
 
+/*
+!!!!!!!!!!!!!!! DO NOT EVER USE THESE KEYS IN THE REAL WORLD !!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!! NOW THAT THEY ARE PART OF THIS DEMO, THEY ARE DANGEROUS !!!!!!!
+*/
 set userkeys='''{
     "678901": ["7d1b1f5d48fed50a53c6c7afffc1b4ec3fc2865a97744b263e285676bc96c055", "CBD09280979564", "56854"],
     "678902": ["c2051e1a93c3fd7f0e4f20b4fb4f7889aeb8d6fd10f68551af659323f42961e9", "7036604882667B", "85567"]
 }''';
+/*
+!!!!!!!!!!!!!!! DO NOT EVER USE THESE KEYS IN THE REAL WORLD !!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!! NOW THAT THEY ARE PART OF THIS DEMO, THEY ARE DANGEROUS !!!!!!!
+*/
 
 grant usage on database ff3_test_db to role ff3_encrypt;
 grant usage on schema ff3_test_schema to role ff3_encrypt;
