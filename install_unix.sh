@@ -8,6 +8,8 @@ zip -r ff3.zip ff3/
 mv ff3.zip ../
 cd ..
 rm -rf python-fpe
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
 
 # preserve the original install SQL script
 cp install.sql install.sql.bak
