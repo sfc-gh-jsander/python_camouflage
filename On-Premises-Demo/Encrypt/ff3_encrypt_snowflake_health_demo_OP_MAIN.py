@@ -45,20 +45,11 @@ try:
     regioninput=input('Region?: ')
     chargesinput=int(input('Charges?: '))
 
-    #db.insurance_source1_target1.insert(keyid=ff3keyinput, age=35, sex='neutral', bmi=99,children=2,smoker='yes', region='holland', charges=45454)
+  
 
     db.insurance_source1_target1.insert(keyid=ff3keyinput, age=ageinput, sex=genderinput, bmi=bmiinput,children=childreninput,smoker=smokerinput, region=regioninput, charges=chargesinput)
 
 
-    #rows=db().select(db.insurance_source1_target1.ALL)
-
-    #for row in rows:
-    #    age=str(row['age'])
-    #    bmi=str(row['bmi'])
-    #    charges=str(row['charges'])
-    #    children=str(row['children'])
-    #    print("{} || {} || {} || {} || {} || {} || {}".format(int(age), row['sex'], int(bmi),int(children),row['smoker'],row['region'],int(charges)))
-    
 
 finally:
 
