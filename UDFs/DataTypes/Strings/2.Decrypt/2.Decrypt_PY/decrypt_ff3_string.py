@@ -27,11 +27,7 @@ def udf(ff3keyinput, ff3input, userkeys):
 
     result=''
     length=len(ff3input)
-    #ff3_key_dict=json.loads(ff3key)
-    #keyid = str(list(ff3_key_dict.keys())[0])
-    #ff3_key=ff3_key_dict[keyid][0]
-    #ff3_tweak=ff3_key_dict[keyid][1]
-    #ff3_padding=ff3_key_dict[keyid][2]
+
 
     c = FF3Cipher.withCustomAlphabet(key, tweak, """0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-().@ '""")
 
