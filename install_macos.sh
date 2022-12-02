@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # start by cloning the FF3 libraries and creating the zip file to upload
-git clone https://github.com/mysto/python-fpe.git
+clear
+git clone -q https://github.com/mysto/python-fpe.git &> /dev/null
 cd python-fpe
 # should we test for zip and not assume?
 zip -r ff3.zip ff3/
@@ -13,7 +14,7 @@ export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 
 # preserve the original install SQL script
 cp install.sql install.sql.bak
-
+clear
 # gather the user's details for their ENV
 echo Enter your account identifier as you would format it to use with SnowSQL.
 echo For example, if you have an account URL "myorg-acct.snowflakecomputing.com"

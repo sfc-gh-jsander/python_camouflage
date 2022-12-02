@@ -29,7 +29,7 @@ def udf(ff3key, ff3input, userkeys):
         c = FF3Cipher(ff3key, tweak)
     
 
-        if length<=6:
+        if length>=6:
             plaintext=str(ff3input)
             lengthpadding=1
 
