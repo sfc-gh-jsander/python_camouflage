@@ -1,6 +1,6 @@
 
 
-create or replace function sqljoin_ff3_float(ff3input float)
+create or replace secure function sqljoin_ff3_float(ff3input float)
 returns float
 language python
 runtime_version = 3.8

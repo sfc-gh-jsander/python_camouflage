@@ -1,5 +1,5 @@
 
-create or replace function format_ff3_string_uspostal(ff3input string)
+create or replace secure function format_ff3_string_uspostal(ff3input string)
 returns string
 language python
 runtime_version = 3.8

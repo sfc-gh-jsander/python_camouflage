@@ -1,6 +1,6 @@
 
 
-create or replace function encrypt_ff3_float(ff3key string, ff3input float, ff3_user_keys string)
+create or replace secure function encrypt_ff3_float(ff3key string, ff3input float, ff3_user_keys string)
 returns float
 language python
 runtime_version = 3.8

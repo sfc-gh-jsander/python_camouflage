@@ -1,5 +1,5 @@
 
-create or replace function decrypt_ff3_string(ff3key string, ff3input string, ff3_user_keys string)
+create or replace secure function decrypt_ff3_string(ff3key string, ff3input string, ff3_user_keys string)
 returns string
 language python
 runtime_version = 3.8
