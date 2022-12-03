@@ -75,9 +75,12 @@ use role ff3_standard;
 grant all privileges on view ff3_datatypes_view1 to role FF3_DATA_SC;
 grant all privileges on view ff3_datatypes_view1 to role FF3_DECRYPT;
 grant all privileges on view ff3_datatypes_view1 to role FF3_ENCRYPT;
+grant all privileges on view ff3_datatypes_view1 to role FF3_MASKED;
+
 grant all privileges on table ff3_datatypes_target1 to role FF3_DATA_SC;
 grant all privileges on table ff3_datatypes_target1 to role FF3_DECRYPT;
 grant all privileges on table ff3_datatypes_target1 to role FF3_ENCRYPT;
+grant all privileges on table ff3_datatypes_target1 to role FF3_MASKED;
 
   
 
