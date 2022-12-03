@@ -1,4 +1,4 @@
-1. Instll Python in Windows
+1. Install Python in Windows
 2. Create a virtualenv with Python
 3. Activate the virtualenv and install the dependecies listed in requirements.txt via pip
 4. Edit your PowerBI Desktop options and point the Python interpreter to the "Scripts" folder in your virtualenv path
