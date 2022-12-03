@@ -1,0 +1,5 @@
+pydal
+snowflake-connector-python
+matplotlib
+pandas
+ff3

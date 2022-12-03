@@ -1,0 +1,9 @@
+1. Instll Python in Windows
+2. Create a virtualenv with Python
+3. Activate the virtualenv and install the dependecies listed in requirements.txt via pip
+4. Edit your PowerBI Desktop options and point the Python interpreter to the "Scripts" folder in your virtualenv path
+5. Edit the PowerBI Python script so you have the right accounturl, username and password set for the DB connection to Snowflake
+6. Start PowerBI and choose source "Python Script" and copy and paste the whole Python script in the window
+7. It may take a bit, wait until there are no more "dots" moving that indicate that PowerBI is still loading the data 
+8. When finished you can see the data under "Python --> DF" and import it into a data set.
+9. This method does not support Direct Query
