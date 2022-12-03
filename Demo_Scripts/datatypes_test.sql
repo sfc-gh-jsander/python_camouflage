@@ -72,15 +72,6 @@ use role ff3_standard;
 
 -- Grant access rights to view
 
-grant usage on database ff3_test_db to role ff3_encrypt;
-grant usage on schema ff3_test_schema to role ff3_encrypt;
-
-grant usage on database ff3_test_db to role ff3_decrypt;
-grant usage on schema ff3_test_schema to role ff3_decrypt;
-
-grant usage on database ff3_test_db to role ff3_data_sc;
-grant usage on schema ff3_test_schema to role ff3_data_sc;
-
 grant all privileges on view ff3_datatypes_view1 to role FF3_DATA_SC;
 grant all privileges on view ff3_datatypes_view1 to role FF3_DECRYPT;
 grant all privileges on view ff3_datatypes_view1 to role FF3_ENCRYPT;

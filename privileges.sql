@@ -1,5 +1,18 @@
 
 
+grant usage on database ff3_test_db to role ff3_encrypt;
+grant usage on schema ff3_test_schema to role ff3_encrypt;
+
+grant usage on database ff3_test_db to role ff3_decrypt;
+grant usage on schema ff3_test_schema to role ff3_decrypt;
+
+grant usage on database ff3_test_db to role ff3_data_sc;
+grant usage on schema ff3_test_schema to role ff3_data_sc;
+
+grant usage on database ff3_test_db to role ff3_masked;
+grant usage on schema ff3_test_schema to role ff3_masked;
+
+
 grant all privileges on function encrypt_ff3_string(string, string, string) to role ff3_encrypt;
 grant all privileges on function encrypt_ff3_string(string, string, string) to role ff3_masked;
 grant all privileges on function decrypt_ff3_string(string, string, string) to role ff3_decrypt;

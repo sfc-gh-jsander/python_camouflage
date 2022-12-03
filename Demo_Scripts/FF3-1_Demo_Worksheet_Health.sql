@@ -59,8 +59,7 @@ set userkeys='''{
 !!!!!!!!!!!!!!! NOW THAT THEY ARE PART OF THIS DEMO, THEY ARE DANGEROUS !!!!!!!
 */
 
-grant usage on database ff3_test_db to role ff3_encrypt;
-grant usage on schema ff3_test_schema to role ff3_encrypt;
+
 grant all privileges on table insurance_source1_view1 to role ff3_encrypt;
 
 
@@ -89,14 +88,7 @@ CREATE or replace TABLE insurance_source1_target1 (
   charges integer
 );
 
-grant usage on database ff3_test_db to role ff3_decrypt;
-grant usage on schema ff3_test_schema to role ff3_decrypt;
 
-grant usage on database ff3_test_db to role ff3_data_sc;
-grant usage on schema ff3_test_schema to role ff3_data_sc;
-
-grant usage on database ff3_test_db to role ff3_masked;
-grant usage on schema ff3_test_schema to role ff3_masked;
 
 grant all privileges on table insurance_source1_target1 to role ff3_encrypt;
 grant all privileges on table insurance_source1_target1 to role ff3_masked;
