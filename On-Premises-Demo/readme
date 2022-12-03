@@ -1,0 +1,37 @@
+1. Install Python
+
+2. Create a virtualenv with Python
+
+3. Activate the virtualenv and install the dependecies listed in requirements.txt via pip
+
+4. Open 2 terminal windows/tabs and activate the virtualenv in both of those sessions
+
+5. CD into the decrypt directoy and in the first tab and adapt the Python code so it can authenticate to Snowflake (add username,password,accountURL)
+
+6. Now you can launch the decrypt script. You will see that all the rows of the encrypted table will be shown to you decryted and a sum is calculated
+
+7. Login to your Snowflake account in the webUI and check the history or run a history SQL and verify that the SQL issued by the script 
+   only returned encrypted values within Snowflake
+
+8.Change to the other terminal tab. DO NOT CLOSE OR EXIT the decrypt session tab. You will need it. 
+
+9. CD into the encrypt directory
+
+10. Again make sure the Python script has the information to be able to authenticate to your Snowflake account (username,password,accounturl)
+
+11. Launch the Python script
+
+12. The script will create a row in the encrypted table and prompt you for the values to enter into the colums. Please make sure you enter 
+    strings for the string columns and integers for the integer columns.
+
+13. One you have provided all the values the row is inserted into Snowflake encrypted. Meaning the scrupt encrypted the values before inserting them 
+    into Snowflake. You will get a confirmation that his happened at the end of the script. 
+
+14. Go back to your other terminal tab for the decryption script and run the decryption script again
+
+15. You will see that your added row is there and the end with the values you provided
+
+16. Go into the webUI in Snowflake and check with the FF3-Standard role how the table looks like. You will see that there are only encrypted values
+    even the new ones you entered. 
+
+17. Check the history in Snowflake for the insert SQL. You will see that only encrypted values were inserted.
