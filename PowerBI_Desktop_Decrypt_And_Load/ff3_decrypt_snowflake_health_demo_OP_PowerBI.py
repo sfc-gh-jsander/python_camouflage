@@ -192,7 +192,7 @@ try:
     data = []
     
     for row in rows:
-        data.append([row.age,row.sex,row.bmi,,row.children,,row.smoker,,row.region,,row.charges]) 
+        data.append([row.age,row.sex,row.bmi,row.children,row.smoker,row.region,row.charges]) 
 
     
     
@@ -201,5 +201,5 @@ finally:
 
     if db:
         db.close() 
-        df = pd.DataFrame(data,columns=['ID','Name','Price'],dtype=int)
+        df = pd.DataFrame(data,columns=['Age','Sex','BMI','Children','Smoker','Region','Charges'])
         print (df)
