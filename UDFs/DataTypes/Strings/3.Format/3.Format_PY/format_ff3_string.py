@@ -5,7 +5,7 @@ def isDivisibleBy2(num):
         return False
 
 
-def udf(ff3input):
+def format_ff3_string(ff3input):
 
     
     

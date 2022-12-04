@@ -4,7 +4,7 @@ from decimal import *
 
 
 
-def udf(ff3key, ff3input, userkeys):
+def decrypt_number(ff3key, ff3input, userkeys):
 
 
     userkeys=userkeys.replace("'","")

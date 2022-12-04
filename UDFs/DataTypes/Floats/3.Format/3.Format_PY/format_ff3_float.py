@@ -1,9 +1,5 @@
-def udf(ff3_input):
+def format_ff3_float(ff3_input):
 
-    
-
-    #lengthpadding=int(str(ff3_input)[-3])
-    #commais=int(str(ff3_input)[0])
     
     formatting=str(ff3_input)[-5:]
     formatting = formatting[:-3]

@@ -3,7 +3,7 @@ import re
 
 
 
-def udf(ff3input, firstdigit):
+def format_ff3_number_1d(ff3input, firstdigit):
 
     
     checkdecimal="." in str(ff3input)

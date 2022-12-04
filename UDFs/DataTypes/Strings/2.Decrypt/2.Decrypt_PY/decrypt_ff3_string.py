@@ -10,7 +10,7 @@ def isDivisibleBy2(num):
         return False
 
 
-def udf(ff3keyinput, ff3input, userkeys):
+def decrypt_string(ff3keyinput, ff3input, userkeys):
 
     
     

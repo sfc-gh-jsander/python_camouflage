@@ -2,7 +2,7 @@ from decimal import *
 
 
 
-def udf(ff3input):
+def format_ff3_number_sqljoin(ff3input):
 
     
     checkdecimal="." in str(ff3input)

@@ -6,5 +6,5 @@ language python
 runtime_version = 3.8
 packages = ('pycryptodome')
 imports = ('@python_libs_ff3/ff3.zip','@python_libs_ff3/decrypt_ff3_float.py')
-HANDLER = 'decrypt_ff3_float.udf';
+HANDLER = 'decrypt_ff3_float.decrypt_float';
 

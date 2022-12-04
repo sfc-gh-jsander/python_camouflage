@@ -5,7 +5,7 @@ language python
 runtime_version = 3.8
 packages = ('pycryptodome')
 imports = ('@python_libs_ff3/ff3.zip','@python_libs_ff3/encrypt_ff3_number.py')
-HANDLER = 'encrypt_ff3_number.udf';
+HANDLER = 'encrypt_ff3_number.encrypt_number';
 
 
 create or replace secure function encrypt_ff3_number_integer(ff3key string, ff3input number (38,0), ff3_user_keys string)
@@ -14,5 +14,5 @@ language python
 runtime_version = 3.8
 packages = ('pycryptodome')
 imports = ('@python_libs_ff3/ff3.zip','@python_libs_ff3/encrypt_ff3_number.py')
-HANDLER = 'encrypt_ff3_number.udf';
+HANDLER = 'encrypt_ff3_number.encrypt_number';
 

@@ -5,6 +5,6 @@ returns float
 language python
 runtime_version = 3.8
 imports = ('@python_libs_ff3/format_ff3_float_sqljoin.py')
-HANDLER = 'format_ff3_float_sqljoin.udf';
+HANDLER = 'format_ff3_float_sqljoin.float_sqljoin';
 
 

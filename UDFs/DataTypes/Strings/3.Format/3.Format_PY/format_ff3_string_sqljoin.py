@@ -1,4 +1,4 @@
-def udf(ff3input):
+def format_ff3_string_sqljoin(ff3input):
 
 
     result=''

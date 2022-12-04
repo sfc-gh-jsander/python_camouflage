@@ -1,7 +1,7 @@
 import json
 from ff3 import FF3Cipher
 
-def udf(ff3key_input, ff3_input, userkeys):
+def encrypt_float(ff3key_input, ff3_input, userkeys):
 
     userkeys=userkeys.replace("'","")
     ff3_userkey_dict=json.loads(userkeys)

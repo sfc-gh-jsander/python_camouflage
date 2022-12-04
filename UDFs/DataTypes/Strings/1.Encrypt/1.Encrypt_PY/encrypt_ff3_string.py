@@ -1,7 +1,7 @@
 import json
 from ff3 import FF3Cipher
 
-def udf(ff3keyinput, ff3input, userkeys):
+def encrypt_string(ff3keyinput, ff3input, userkeys):
 
     if ff3input[0:3] == 'KEY':
         return ff3input
