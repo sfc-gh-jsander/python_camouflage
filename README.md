@@ -17,7 +17,7 @@ The steps are very simple from a technical point of view:
     It will ask you for your Snowflake account URL, username and your users password. 
     Then it will generate and install.sql script and execute this with SnowfSQL against your account. 
     The script will create a database called ff3_test_db, a schema called ff3_test_schema, a warehouse called ff3_test_wh and various 
-    roles such as ff3_standard (install role), ff3_encrypt (use this role to encrypt data), ff3_decrypt (use this role to decrypt data), ff3_data_sc (data scientist role, use this role to work with encrypted data), ff3_masked just a test role to show that also normal masking policies can be used if you use that role. (Accountadmin, Sysadmin etc. needed)
+    roles such as ff3_standard (install role), ff3_encrypt (use this role to encrypt data), ff3_decrypt (use this role to decrypt data), ff3_data_sc (data scientist role, use this role to work with encrypted data), ff3_masked just a test role to show that also normal masking policies can be used if you use that role. (Accountadmin, Useradmin etc. needed, check the beginning of install.sql)
 
     It also creates the FF3 Python UDFs and the masking policies that can be used to assign them to tags when you go throug the demo.
 
