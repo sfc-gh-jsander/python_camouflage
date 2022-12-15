@@ -1,16 +1,15 @@
-# Python Camo Snowvation 22 Version
+# Python Camouflage
 
 Project Python Camouflage aims to give a working minimal viable product (MVP) for tokenization in Snowflake using Python. The problem this aims to solve is allowing customers to obfuscate (or “mask”) PII while at the same time not losing the ability to use that data in joins and other operations where the consistency of the data through operations is required. Python offers UDFs powered by Python libraries to achieve this using encryption. As an MVP, this is not meant to offer a complete solution to the problem. Rather, this is a framework that others can embrace and extend. 
 
 If this sounds a lot like what our External Tokenization partners (like Protegrity and Voltage) deliver, that’s because it is basically the same approach - only without the external part. Of course, our partners don’t only deliver an MVP. They are offering battle tested, robust solutions for these issues. Those solutions come with costs - both financial and performance - that some may not wish to pay. There are also use cases where tokenization is desired, but since it’s not as business critical those costs may not make sense. So, it is even possible to imagine scenarios where both Project Python Camouflage and the partner may be used by the same customer but for different sets of data. 
-
-This was originally published as a [Snowflake Quickstart site with a demo walkthrough](https://quickstarts.snowflake.com/guide/python_camouflage/index.html?index=..%2F..index#0). This Snowvation version includes a new demo, which self installs everything to get started in 2 minutes. 
 
 ## How to Use the Snowvation Python Camo Demo
 
 The steps are very simple from a technical point of view:
 
 1. Clone this repo
+
 2. Run the install script for your system (e.g. for MacOS related systems use install_macos.sh, for Linux use install_linux.sh. Windows support is on the way)
 
 3. Follow the install script prompts carefully. Make sure SNOWSQL is installed and in your path!
@@ -18,7 +17,7 @@ The steps are very simple from a technical point of view:
     It will ask you for your Snowflake account URL, username and your users password. 
     Then it will generate and install.sql script and execute this with SnowfSQL against your account. 
     The script will create a database called ff3_test_db, a schema called ff3_test_schema, a warehouse called ff3_test_wh and various 
-    roles such as ff3_standard (install role), ff3_encrypt (use this role to encrypt data), ff3_decrypt (use this role to decrypt data), ff3_data_sc (data scientist role, use this role to work with encrypted data), ff3_masked just a test role to show that also normal masking policies can be used if you use that role. 
+    roles such as ff3_standard (install role), ff3_encrypt (use this role to encrypt data), ff3_decrypt (use this role to decrypt data), ff3_data_sc (data scientist role, use this role to work with encrypted data), ff3_masked just a test role to show that also normal masking policies can be used if you use that role. (Accountadmin, Sysadmin etc. needed)
 
     It also creates the FF3 Python UDFs and the masking policies that can be used to assign them to tags when you go throug the demo.
 
