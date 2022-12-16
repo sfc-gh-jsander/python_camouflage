@@ -4,6 +4,19 @@ Project Python Camouflage aims to give a working minimal viable product (MVP) fo
 
 If this sounds a lot like what our External Tokenization partners (like Protegrity and Voltage) deliver, that’s because it is basically the same approach - only without the external part. Of course, our partners don’t only deliver an MVP. They are offering battle tested, robust solutions for these issues. Those solutions come with costs - both financial and performance - that some may not wish to pay. There are also use cases where tokenization is desired, but since it’s not as business critical those costs may not make sense. So, it is even possible to imagine scenarios where both Project Python Camouflage and the partner may be used by the same customer but for different sets of data. 
 
+## Use Cases
+
+1) You want to hold your own key
+
+2) You have compliance requirements for holding your own key and/or storing senstive data in Snowflake only in encrypted form
+
+3) You want to protect senstive data from super users such as accountadmins and use encryption as another layer of protection. 
+
+Data Clean Rooms can also easily benefit from this solution in order to join data on encrypted columns. 
+The partners in a clean room only have to agree on the same key in order to be able to do the sql joins. 
+
+
+
 ## How to Use the Snowvation Python Camo Demo
 
 The steps are very simple from a technical point of view:
