@@ -96,14 +96,6 @@ def encrypt_number(ff3key, ff3input, userkeys):
         commais=commais
         detect_float=plaintext_org.split('.')
 
-        #dont try to encode more than 11 digits with float or more than 9 digits before or after the comma
-
-        #if len(detect_float[0]) >= 10:
-         #   print ("VALUE BEFORE COMMA TOO BIG NOT MORE THAN 9 DIGITS ALLOWED")
-        #if len(detect_float[1])>=10:
-        #    print("VALUE AFTER COMMA TOO BIG NOT MORE THAN 9 DIGITS ALLOWED")
-        #if len(detect_float[1])+len(detect_float[0])>=12:
-        #    print ("VALUE  TOO BIG NOT MORE THAN 11 DIGITS ALLOWED")
 
 
         plaintext =  value
@@ -118,22 +110,10 @@ def encrypt_number(ff3key, ff3input, userkeys):
         beforecomma=len(detect_float[0])
         aftercomma=len(detect_float[1])
         
-        #d = Decimal(value)
-        #aftercomma=int(d.as_tuple().exponent)
-        #aftercomma=-aftercomma
+        
         
         aftercommacheck=value
-       # before, sep, after = strValue.partition('-')
-        #strValue = before
-        
-        #mo = re.match('.+([1-9])[^1-9]*$', aftercommacheck)
-        #if mo !=  None:
-        #    lastposition=int(mo.start(1))
-        #    aftercommacheck=value[0:lastposition+1]
-        #    aftercommacheck=aftercommacheck.split('.')
-        #    aftercomma=len(aftercommacheck[1])
-        #else:
-        #    aftercomma=0
+       
         
         mo = re.search('(?:(\.\d*?[1-9]+)|\.)0*$', aftercommacheck)
         
