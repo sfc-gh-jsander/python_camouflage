@@ -23,6 +23,58 @@ The steps are very simple from a technical point of view:
 
 4. After the FF3-1 install script is done, please login to your Snowflake account and create a new worksheet. Then go to the Demo_Scripts folder and copy and paste the FF3-1_Demo_Walkthrough_Health.sql script into your worksheet and go through it step by step. 
 
+Note: The experience of working with encrypted data can be tweaked!
+
+Python Camouflage works based on tag based policies which can also take other tags into account to change the experience. 
+
+For example sometimes when a data scientist wants to work with encrypted data the following can happen:
+
+1) Token formatting or "cleansing" means that the encrypted data is read including some of the meta data that was attached to the encrypted data during encryption. This metadata makes it possible to for the token formatting UDF to format the encrypted data into something that resembles the original data e.g. decimals encrypted hat the same number of digits before and behind the comma.
+However the drawback of this approach is, especially with numbers that have 1-3 digits, that there may be duplicates due to the nature how token cleansing works. 
+
+If a data scientist needs to be sure that the value of an encrypted number for example is 100% unique, then she can enable the tag sqljoin='' on that column and the token cleaninsing UDF will only strip away the metadata and leave the encrypted data otherwise untouched. This means longer values to deal with, but definitly 100% accurate for sqljoins. 
+
+Sample:
+    alter table EXAMPLE modify column somenumber set tag sqljoin='';
+
+2) If you encrypted email addresses, you may want your encrypted data also look like an email address. 
+   There are two ways, or tags, to enable this. You either enable the tag email='' on that column which will transform encrypted data into a string with an @ in the middle and a .com at the end. 
+   Or you enable the tag fake_email='' which will use the Python Faker library to generate fake email addresses and populate those in your column. 
+   The Faker approach will generate new email addresses with every run, unless you make a copy of the data while you run an SQL on the encrypted data with the fake_email='' tag enabled. 
+
+Samples:
+   alter table EXAMPLE modify column email set tag email='';
+   alter table EXAMPLE modify column email set tag fake_email='';
+
+3) The uspostal='' tag on a column will convert encrypted data into a 5 digit number that looks like a US postal code
+
+Sample:
+    alter table EXAMPLE modify column postcode set tag uspostal='';
+
+4) The usphone='' tag on a column will convert encrypted data into a 5 digit number that looks like a US phone number
+
+Sample:
+    alter table EXAMPLE modify column phone set tag usphone='';
+
+6) The tag fuzzy='' DISABLES that the first number of a number type (integer or decimal) is decrypted. Decryption of the first number is currently enabled per default is it enables data scientist to run SQL comparisons and calculations that are not accurate, but can certainly be used to see viable trends. 
+
+If you want that all numbers are encrypted enable the fuzzy='' tag on the column and the first number will not be decrypted. This will however take away the possiblity to make any meaningful comparisons or calculate any trends on encrypted data.  
+
+The decryption of the first number is currently only available for the number data type. The float data type has all digits always encrypted as this function is not implemented yet for floats. 
+
+Sample:
+    alter table EXAMPLE modify column price set tag fuzzy='';
+
+THIS DISABLES THE DECRYPTION OF THE FIRST DIGIT
+
+
+7) Enable the tag fake='' on a name column and it will popluate the colummn with fake Firstname Lastname values with every SQL run. 
+   The advantage is that names like nicer, but they will be re-generated with every run. If you want fake names to be persistent you need to work with a copy of the table when the names were generated. 
+
+Sample:
+    alter table EXAMPLE modify column name set tag fake='';
+
+
 The last step is one where you may need some additional guidance, and you can feel free to reach out to the maintainters and contributors of this repo for that help. 
 
 ## Background for Project Python Camouflage
