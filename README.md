@@ -23,7 +23,7 @@ The steps are very simple from a technical point of view:
 
 4. After the FF3-1 install script is done, please login to your Snowflake account and create a new worksheet. Then go to the Demo_Scripts folder and copy and paste the FF3-1_Demo_Walkthrough_Health.sql script into your worksheet and go through it step by step. 
 
-Note: The experience of working with encrypted data can be tweaked!
+## Note: The Experience Of Working With Encrypted Data Can Be Tweaked!
 
 Python Camouflage works based on tag based policies which can also take other tags into account to change the experience. 
 
@@ -65,7 +65,7 @@ The decryption of the first number is currently only available for the number da
 Sample:
     alter table EXAMPLE modify column price set tag fuzzy='';
 
-THIS DISABLES THE DECRYPTION OF THE FIRST DIGIT
+THIS DISABLES THE DECRYPTION OF THE FIRST DIGIT FOR THE NUMBER DATA TYPE
 
 
 7) Enable the tag fake='' on a name column and it will popluate the colummn with fake Firstname Lastname values with every SQL run. 
@@ -76,6 +76,130 @@ Sample:
 
 
 The last step is one where you may need some additional guidance, and you can feel free to reach out to the maintainters and contributors of this repo for that help. 
+
+## How Metadata is Injected in the Encrypted Data Field to Make Token Formatting or "Cleansing" Possible
+
+1) Numbers: 
+
+Integer: 
+
+The number of digits needed for padding +1 is the first digit in an encrypted field. 
+The +1 is always added as the first digit as a leading digit can not be 0. This 0 would dissapear in Snowflake. 
+Hence 0 padding means 1. 
+The last 2 digits denote how many digits the original number had before it was encrypted. 
+In the middle is the encrypted ciphertext of the number, which in itself is a number
+
+So a number with 2 digits could look like this: 
+(4 for padding because we need at least 5 digits in order to encrypt, so we are adding 3 digits but add the +1)
+
+Numer 55 encrypted may look like this: 
+
+4 (padding +1) 45434 (ciphertext) 02 (2 numbers were encrypted)  --> 
+
+Result:
+
+4543402
+
+Decimal:
+
+A decimal starts with a digit that denotes at which postion we find the comma in the original number that was encrypted. 
+It is followed by the ciphertext (in this case also a number actually).
+Afterwards we have a number that describes how many digits were before the comma and after that a number that describes how many digits were after the comma. 
+The next digit encodes how long the orignal value was.
+Finally the last 1 digit encodes how many digits long padding was that was needed +1.
+
+Sample: 
+
+55.78 is encrypted to: 
+
+2 (position of comma counted from 0) 453545 (ciphertext) 2(numbers before comma) 2 (numnbers after comma) 4 (the orginal value was 4 digits long) 2 (padding was 1 +1)
+
+--> 
+
+Result: 
+24535452242
+
+This number is usually followed by a comma and the zeros of the defined decimal. 
+
+Sample: Number type 38,8 
+
+-->
+
+Result:
+
+24535452242.00000000
+
+When a table has mixed integers and decimals e.g. 38,0 and 38,8 number types, the number encrypt UDF is able to detect if an integer of decimal is encrypted automatically and is running the appropiate encryption method. 
+
+However integers will turn into decimals when those data types are mixed due to the application of tags with tag based policies with mixed number types. The policy will need to be set to the decimal type which is compatible with integer. The other way around will also work, but you will loose everything behind the comma. 
+
+Integer numbers that turn into decimals will however be given a comma and trailing zeros. 
+
+Its often better to assign the right masking policy that expects the correct data type of the right number column manually instead of relying on tag based policies in this case of mixed number types as it makes it easier to deal with and what to expect. 
+
+But generally mixing of number types is possible, Python Camouflage will not crash. 
+
+
+Floats: 
+
+The encrypted float ciphertext (in this case also a number) will have one digit added in front which denotes the position of the comma before the value was encrypted. 
+
+It is followed by the cipher(text). 
+
+Afterwards added is the number of how many digits were before the comma and afterwards how many digits were after the comma of the original float number. Finally the last digit is the number of digits that were needed for padding +1. 
+
+Thus a float number of: 
+
+8.67
+
+May be encrypted as follows:
+
+1 (number of comma from 0), 4343545( ciphertext), 1(one number before comma),2 (one number after comma), 3 (how much padding was needed to reach 5 digits = 2 +1  )
+
+--> 
+
+Result: 
+
+14343545123
+
+Strings: 
+
+FF3-1 can only encrypted a maximum of 30 characters at a time. 
+
+Hence for larger strings in a column the characters have to be chunked in 30 character pieces. 
+
+The way Python Camouflage does this is as follows:
+
+This two leading characters are inserted at the beginning of an encrypted string (C stands for chunk):
+[C
+followed by the number of characters that were needed for padding. 
+For a 4 character string its 1 to reach 5 characaters that are needed as a minimum for encryption. 
+
+Thus for example:
+[C1]
+
+Followed by the chunked ciphertext
+[C1]dfsgfdghsgtrt45w4
+
+At the end you will find 3 digits reserved to conserve how many digits this chunk had before it was encrypted e.g. for 4
+004
+
+Finally the encrypted string will look like this for example.
+
+[C1]dfsgfdghsgtrt45w4004
+
+If there are more chunks, the will just be concatonated:
+
+[C0]dfsgfdghsgtrt45w4030[C1]dfsgjhjhjfdhtrt45w4004
+
+
+The data or token formater UDF can now use this metadata in order to turn a cryptic value into something more nice to look at and to work with. 
+
+
+
+
+
+
 
 ## Background for Project Python Camouflage
 
