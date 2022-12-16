@@ -196,6 +196,45 @@ If there are more chunks, the will just be concatonated:
 The data or token formater UDF can now use this metadata in order to turn a cryptic value into something more nice to look at and to work with. 
 
 
+## A Word of Caution When Using Keys, Tweaks and Padding in Cleartext in a Snowflake Session
+
+Python Camouflage is designed to work with AES256 keys in combination with a so called tweak of 56 bits and 5 characters of padding which need to be digits. 
+
+For example a set of secrets that is used for this demo looks like this.
+
+AES265 key, tweak 56 bits, padding -->
+
+"7d1b1f5d48fed50a53c6c7afffc1b4ec3fc2865a97744b263e285676bc96c055", "CBD09280979564", "56854"
+
+An encryption method is only ever as good as the key protection is. 
+
+Currently this demo does not yet feature how to protect the keys in a Snowflake session. 
+
+There are many approaches how this can be accomplished. 
+
+At least 1 is already implemeted by me (Kevin Keller) as a demo, but it is not yet part of this repository. 
+
+The flow is basically to keep those secrets in a secret manager such as Azure Keyvault, AWS KMS or Hashi Corp Vault and 
+have some external functions call Azure Functions or AWS Lambda functions in order for a user in a Snowflake session 
+to obtain an OAuth token via Device Code Flow. 
+
+One the user has authenticated and ants to to obtain the OAuth token, the users Snowflake session will also be recored and the requested token including a session signature will be sent back to the user. 
+
+With this signature and OAuth token, the user can now call a final external function to obtain one or all keys the user is allowed to obtain based on the users valid OAuth token and based on that the users Snowflake session really exists and can be validated online. 
+
+The keys will then be sent to the user and stored either in a Snowflake stage or in a Snowflake SQL variable in a wrapped (AES encrypte form). 
+
+An unwrap UDF will be nested in the Python Camouflage UDFs that unwraps the key material if the users token is valid and matches the current users Snowflake username and the Snowflake session is still the same as it was when the token was requested.
+
+For good measure Python Camouflage itself should do another round of unwrapping of the unwrapped key material. 
+
+But this is just one approach, there are many others that can be used. 
+
+In any case, you need an approach to protect the keys!
+
+And currently it is not part of the repo. 
+
+I will add different approaches and demo code over time however.
 
 
 
