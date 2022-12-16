@@ -74,6 +74,14 @@ THIS DISABLES THE DECRYPTION OF THE FIRST DIGIT FOR THE NUMBER DATA TYPE
 Sample:
     alter table EXAMPLE modify column name set tag fake='';
 
+8) Enable the tag decrypt_this='' on a column to decrypt it no matter which role you have. 
+   ATTENTION THIS IS JUST FOR TESTING AND NEEDS TO BE REMOVED IN A REAL ENVIRONMENT. 
+   The masking policies for decryption and formatting need to be ALTERED to NOT ALLOW THIS NORMALLY.  
+   Again, THIS IS INTENTED FOR TESTING. 
+
+   Sample:
+    alter table EXAMPLE modify column name set tag decrypt_this='';
+
 
 The last step is one where you may need some additional guidance, and you can feel free to reach out to the maintainters and contributors of this repo for that help. 
 
