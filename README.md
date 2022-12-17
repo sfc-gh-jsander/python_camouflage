@@ -4,8 +4,8 @@ Project Python Camouflage aims to give a working minimal viable product (MVP) fo
 
 If this sounds a lot like what our External Tokenization partners (like Protegrity and Voltage) deliver, that’s because it is basically the same approach - only without the external part. Of course, our partners don’t only deliver an MVP. They are offering battle tested, robust solutions for these issues. Those solutions come with costs - both financial and performance - that some may not wish to pay. There are also use cases where tokenization is desired, but since it’s not as business critical those costs may not make sense. So, it is even possible to imagine scenarios where both Project Python Camouflage and the partner may be used by the same customer but for different sets of data. 
 
-This Python functions were developed specifically for us in Snowflake Python UDFs and masking polcies, but 
-they also work fine for any other database that either execute Python code directly such as PostgreSQL or you can use the Python functions to execute before ingest or after select with any Python ORM such as PyDAL (one example is available in the On-Premises-Demo folder) or SQLAlchemy etc. 
+This Python functions were developed specifically for use in Snowflake Python UDFs and masking polcies, but 
+they also work fine for any other database that can either execute Python code directly such as PostgreSQL or you can use the Python functions to execute before ingest or after select with any Python ORM such as PyDAL (one example is available in the On-Premises-Demo folder) or SQLAlchemy etc. 
 
 ## Use Cases
 
