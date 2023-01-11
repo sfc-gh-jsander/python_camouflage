@@ -32,10 +32,20 @@ The steps are very simple from a technical point of view:
 
     It will ask you for your Snowflake account URL, username and your users password. 
     Then it will generate and install.sql script and execute this with SnowfSQL against your account. 
-    The script will create a database called ff3_test_db, a schema called ff3_test_schema, a warehouse called ff3_test_wh and various 
-    roles such as ff3_standard (install role), ff3_encrypt (use this role to encrypt data), ff3_decrypt (use this role to decrypt data), ff3_data_sc (data scientist role, use this role to work with encrypted data), ff3_masked just a test role to show that also normal masking policies can be used if you use that role. (Accountadmin, Useradmin etc. needed, check the beginning of install.sql)
+    The script will create:
+    
+    - a database called ff3_test_db, 
+    
+    - a schema called ff3_test_schema, 
+    
+    - a warehouse called ff3_test_wh and
+    
+    - various roles such as ff3_standard (install role), ff3_encrypt (use this role to encrypt data), ff3_decrypt (use this role to decrypt data), ff3_data_sc (data scientist role, use this role to work with encrypted data), ff3_masked just a test role to show that also normal masking policies can be used if you use that role. 
+    
+    -  It also creates the FF3 Python UDFs and the masking policies that can be used to assign them to tags when you go throug the demo.
+    
+    In order to run the install script roles such as Accountadmin, Useradmin, SecurityAdmin etc. are needed by the user that runs the install script!!!!  Check the beginning of install.sql and see if your install users has those roles assigned!
 
-    It also creates the FF3 Python UDFs and the masking policies that can be used to assign them to tags when you go throug the demo.
 
 4. After the FF3-1 install script is done, please login to your Snowflake account and create a new worksheet. Then go to the Demo_Scripts folder and copy and paste the FF3-1_Demo_Walkthrough_Health.sql script into your worksheet and go through it step by step. 
 
