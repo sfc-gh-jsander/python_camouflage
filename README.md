@@ -44,7 +44,9 @@ The steps are very simple from a technical point of view:
     
     -  It also creates the FF3 Python UDFs and the masking policies that can be used to assign them to tags when you go throug the demo.
     
-    In order to run the install script roles such as Accountadmin, Useradmin, SecurityAdmin etc. are needed by the user that runs the install script!!!!  Check the beginning of install.sql and see if your install users has those roles assigned!
+    In order to run the install script roles such as Accountadmin, Useradmin, SecurityAdmin etc. are needed by the user that runs the install script!!!!  
+    
+    Check the beginning of install.sql and see if your install users has those roles assigned!
 
 
 4. After the FF3-1 install script is done, please login to your Snowflake account and create a new worksheet. Then go to the Demo_Scripts folder and copy and paste the FF3-1_Demo_Walkthrough_Health.sql script into your worksheet and go through it step by step. 
@@ -252,7 +254,7 @@ The flow is basically to keep those secrets in a secret manager such as Azure Ke
 have some external functions call Azure Functions or AWS Lambda functions in order for a user in a Snowflake session 
 to obtain an OAuth token via Device Code Flow. 
 
-One the user has authenticated and ants to to obtain the OAuth token, the users Snowflake session will also be recored and the requested token including a session signature will be sent back to the user. 
+One the user has authenticated and wants to obtain the OAuth token, the users Snowflake session will also be recored and the requested token including a session signature will be sent back to the user. 
 
 With this signature and OAuth token, the user can now call a final external function to obtain one or all keys the user is allowed to obtain based on the users valid OAuth token and based on that the users Snowflake session really exists and can be validated online. 
 
